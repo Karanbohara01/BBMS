@@ -6,6 +6,10 @@ import Project.ConnectionProvider;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import net.proteanit.sql.DbUtils;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import java.awt.print.PrinterException;
+import java.text.MessageFormat;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -122,6 +126,7 @@ public class allDonorDetails extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
@@ -134,6 +139,7 @@ public class allDonorDetails extends javax.swing.JFrame {
     jTable1.setModel(DbUtils.resultSetToTableModel(rs));
 } catch (Exception e) {
     JOptionPane.showMessageDialog(null, e);
+    
 }
 
 
@@ -141,21 +147,45 @@ public class allDonorDetails extends javax.swing.JFrame {
     }//GEN-LAST:event_formComponentShown
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        try{
-            jTable1.print(JTable.PrintMode.NORMAL);
-        
-        
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        
-        }
+//        // TODO add your handling code here:
+//        try{
+//            jTable1.print(JTable.PrintMode.NORMAL);
+//
+//        
+//        }
+//        catch(Exception e){
+//            JOptionPane.showMessageDialog(null, e);
+//        
+//        }
+
+
+// ...
+
+// TODO add your handling code here:
+try {
+    MessageFormat headerFormat = new MessageFormat(" All Donors' Details ");
+    MessageFormat footerFormat = new MessageFormat("- {0} -");
+    jTable1.print(JTable.PrintMode.NORMAL, headerFormat, footerFormat);
+} catch (PrinterException e) {
+    JOptionPane.showMessageDialog(null, e);
+}
+
+//MessageFormat header = new MessageFormat("::: All Customers :::");
+//        MessageFormat footer = new MessageFormat("Bhat-Bhateni POS Management System");
+//        try{
+//            jTable1.print(JTable.PrintMode.FIT_WIDTH, header, footer);
+//            
+//        }
+//        catch (PrinterException e){
+//            JOptionPane.showMessageDialog(null,"Error! Cannot Print"+e.getMessage());
+//        }
+     
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         setVisible(false);
+        new Dashboard().setVisible(true);
         
     }//GEN-LAST:event_jButton2ActionPerformed
 

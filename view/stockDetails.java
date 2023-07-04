@@ -8,6 +8,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import java.sql.*;
 import Project.ConnectionProvider;
+import java.awt.print.PrinterException;
+import java.text.MessageFormat;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -107,18 +109,25 @@ public class stockDetails extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
-        try{
-            
-                                    
-            jTable1.print(JTable.PrintMode.NORMAL);
-            
-        
-        
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        
-        }
+//        try{
+//            
+//                                    
+//            jTable1.print(JTable.PrintMode.NORMAL);
+//            
+//        
+//        
+//        }
+//        catch(Exception e){
+//            JOptionPane.showMessageDialog(null, e);
+//        
+//        }
+try {
+    MessageFormat headerFormat = new MessageFormat(" Stock Details ");
+    MessageFormat footerFormat = new MessageFormat("- {0} -");
+    jTable1.print(JTable.PrintMode.NORMAL, headerFormat, footerFormat);
+} catch (PrinterException e) {
+    JOptionPane.showMessageDialog(null, e);
+}
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown

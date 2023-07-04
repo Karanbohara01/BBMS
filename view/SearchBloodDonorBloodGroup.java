@@ -5,6 +5,8 @@
 package view;
 import java.sql.*;
 import Project.ConnectionProvider;
+import java.awt.print.PrinterException;
+import java.text.MessageFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import net.proteanit.sql.DbUtils;
@@ -43,7 +45,6 @@ public class SearchBloodDonorBloodGroup extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Search Blood Donor (Blood Group)");
@@ -117,9 +118,11 @@ public class SearchBloodDonorBloodGroup extends javax.swing.JFrame {
                 .addGap(92, 92, 92))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jSeparator3)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 954, Short.MAX_VALUE)))
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 954, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 919, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,10 +145,11 @@ public class SearchBloodDonorBloodGroup extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -156,17 +160,24 @@ public class SearchBloodDonorBloodGroup extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
-        try{
-            
-            jTable1.print(JTable.PrintMode.NORMAL);
-        
-        
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        
-        }
+//        
+//        try{
+//            
+//            jTable1.print(JTable.PrintMode.NORMAL);
+//        
+//        
+//        }
+//        catch(Exception e){
+//            JOptionPane.showMessageDialog(null, e);
+//        
+//        }
+try {
+    MessageFormat headerFormat = new MessageFormat(" Search Donor (Blood Group) ");
+    MessageFormat footerFormat = new MessageFormat("- {0} -");
+    jTable1.print(JTable.PrintMode.NORMAL, headerFormat, footerFormat);
+} catch (PrinterException e) {
+    JOptionPane.showMessageDialog(null, e);
+}
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
